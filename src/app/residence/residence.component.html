@@ -1,0 +1,26 @@
+<div>
+  <h1>Liste des Résidences</h1>
+
+  <input
+    type="text"
+    placeholder="Rechercher par adresse..."
+    [(ngModel)]="filterText" />
+
+  <div *ngFor="let residence of filteredResidences" class="residence-card">
+
+    <img [src]="residence.image" alt="Image de la résidence" />
+
+    <h2>{{ residence.name }}</h2>
+
+    <button (click)="showLocation(residence.address)">Show Location</button>
+
+    <p>
+      Statut :
+      <span *ngIf="residence.status === 'Disponible'">✅ Disponible</span>
+      <span *ngIf="residence.status === 'En Construction'">🚧 En Construction</span>
+      <span *ngIf="residence.status === 'Vendu'">❌ Vendu</span>
+    </p>
+
+    <button (click)="likeResidence(residence)">Like ❤️</button>
+  </div>
+</div>

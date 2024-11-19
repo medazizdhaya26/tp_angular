@@ -1,26 +1,24 @@
-<div>
-  <h1>Liste des Résidences</h1>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<div class="container mt-5">
+  <h1 class="text-center mb-4">Liste des Résidences</h1>
 
-  <input
-    type="text"
-    placeholder="Rechercher par adresse..."
-    [(ngModel)]="filterText" />
-
-  <div *ngFor="let residence of filteredResidences" class="residence-card">
-
-    <img [src]="residence.image" alt="Image de la résidence" />
-
-    <h2>{{ residence.name }}</h2>
-
-    <button (click)="showLocation(residence.address)">Show Location</button>
-
-    <p>
-      Statut :
-      <span *ngIf="residence.status === 'Disponible'">✅ Disponible</span>
-      <span *ngIf="residence.status === 'En Construction'">🚧 En Construction</span>
-      <span *ngIf="residence.status === 'Vendu'">❌ Vendu</span>
-    </p>
-
-    <button (click)="likeResidence(residence)">Like ❤️</button>
+  <!-- Grid for cards -->
+  <div class="row">
+    <div *ngFor="let residence of listResidences" class="col-md-4 mb-4">
+      <div class="card" style="width: 100%;">
+        <img [src]="residence.image" class="card-img-top" alt="Image de la résidence">
+        <div class="card-body">
+          <h5 class="card-title">{{residence.name}}</h5>
+          <p class="card-text">
+            <strong>Statut :</strong>
+            <span *ngIf="residence.status === 'Disponible'">✅ Disponible</span>
+            <span *ngIf="residence.status === 'En Construction'">🚧 En Construction</span>
+            <span *ngIf="residence.status === 'Vendu'">❌ Vendu</span>
+          </p>
+          <button (click)="showLocation(residence.address)" class="btn btn-primary me-2">Show Location</button>
+          <button (click)="likeResidence(residence)" class="btn btn-secondary">Like ❤️</button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
